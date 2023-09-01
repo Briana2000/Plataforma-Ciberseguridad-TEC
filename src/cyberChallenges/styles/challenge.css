@@ -1,0 +1,19 @@
+body, html {
+    color: #fff;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+.chall-grid-div{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; /* Define tres columnas, la columna del medio es el doble de ancho que las otras dos */
+    gap: 10px; /* Espacio entre las celdas del grid */
+}
+
+.chall-title-div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.25rem;
+}
+
