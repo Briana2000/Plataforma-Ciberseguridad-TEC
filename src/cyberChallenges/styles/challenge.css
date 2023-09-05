@@ -6,14 +6,6 @@ body, html {
 .chall-grid-div{
     display: grid;
     justify-content: space-between;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; /* Define tres columnas, la columna del medio es el doble de ancho que las otras dos */
-    gap: 10px; /* Espacio entre las celdas del grid */
-}
-
-.chall-title-div{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.25rem;
+    grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0fr; /* Define las columnas */
 }
 

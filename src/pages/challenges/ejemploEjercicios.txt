@@ -1,0 +1,24 @@
+const challenges = [
+      {
+        title: "Tentacle",
+        platform: "HackTheBox",
+        level: "Hard",
+        machine: "Linux",
+        flag: false
+      },
+      {
+        title: "Validation",
+        platform: "HackTheBox",
+        level: "Easy",
+        machine: "Linux",
+        flag: false,
+      }, 
+      {
+        title: "Mischief",
+        platform: "HackTheBox",
+        level: "Insane",
+        machine: "Linux",
+        flag: false,
+      }]
+    
+setChallenges(challenges);

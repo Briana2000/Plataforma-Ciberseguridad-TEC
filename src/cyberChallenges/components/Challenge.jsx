@@ -1,7 +1,14 @@
 import '../../cyberChallenges/styles/challenge.css'
+import axios from 'axios';
 
-// Falta el botón de descargar el reto
 export const Challenge = ({ title, platform, level, machine, flag}) => {
+
+  // Por ahora lo voy a dejar así sin hacer la llamada al API porque no tengo el archivo.
+  // El API es /challenges/download
+  const handleDownload = () => {
+    console.log('Descargando archivo del reto');
+  };
+
   return (
     <>
       <div className="chall-grid-div">
@@ -26,7 +33,7 @@ export const Challenge = ({ title, platform, level, machine, flag}) => {
             />
           </label>
         </div>
-        <a href="/descargar"> Descargar </a>
+        <a href="" onClick={handleDownload}> Download </a>
       </div>
   </>
   );
