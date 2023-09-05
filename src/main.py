@@ -32,7 +32,9 @@ def index() -> Response:
 
 #endregion
 
-
-
 if __name__ == '__main__':
 	app.run(host='127.0.0.1', port=app.config['PORT'])
+
+#region init and populate hash table
+hash_table.populate_hashtable(getenv('EXERCISES_DIR'))
+#endregion

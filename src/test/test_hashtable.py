@@ -5,7 +5,19 @@ from modules.hashtable import HashTable
 from collections import namedtuple
 import pytest
 import os
+from dotenv import load_dotenv
 #endregion Imports
+
+load_dotenv()
+#region fixtures
+@pytest.fixture
+def EXERCISES_DIR():
+    return os.getenv("EXERCISES_DIR")
+
+@pytest.fixture
+def hash_table():
+    return HashTable()
+#endregion fixtures
 
 #region Dummy Data
 DummyFile = namedtuple("DummyFile", ["name", "content"])
@@ -22,13 +34,6 @@ dummy_files = [
     DummyFile("DummyForDumies", dummy_content)
 ]
 #endregion Dummy Data
-
-#region Pytest
-@pytest.fixture
-def hash_table():
-    return HashTable()
-
-#endregion Pytest
 
 #Test for the generation of a hash
 def test_generate_hash(hash_table):
@@ -66,3 +71,21 @@ def test_get_zip(hash_table):
 def test_get_zip_not_found(hash_table):
     hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
     assert hash_table.get_zip(dummy_files[1].name) == None
+
+#Test for the population of the hash table with the zip files from the given directory
+def test_populate_hashtable(hash_table, EXERCISES_DIR):
+    hash_table.populate_hashtable(root_dir + EXERCISES_DIR)
+    assert len(hash_table.table) > 0
+
+#Test for the population of the hash table with the zip files from the given directory that does not exist
+def test_populate_hashtable_not_found(hash_table, dir:str = "this dir does not exist"):
+    hash_table.populate_hashtable(dir)
+    assert hash_table.table == {}
+
+#Test for the print of the hash table
+def test_hashtable_print(hash_table):
+    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
+    hash_table.insert_zip(dummy_files[1].name, dummy_files[1].content)
+    hash_table.insert_zip(dummy_files[2].name, dummy_files[2].content)
+    hash_table.print_hashtable()
+    assert hash_table.table != {}
