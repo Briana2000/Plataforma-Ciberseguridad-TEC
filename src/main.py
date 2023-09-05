@@ -4,7 +4,7 @@
 #region imports
 from flask import Flask, Response, jsonify, request, Blueprint
 from dotenv import load_dotenv
-from os import getenv
+from os import environ
 from blueprints.exercices import exercices
 from modules.hashtable import HashTable
 #endregion
@@ -12,6 +12,9 @@ from modules.hashtable import HashTable
 #region app initialization
 load_dotenv()
 app: Flask = Flask(__name__)
+app.debug = None if environ.get('DEBUG') == 'False' else True
+app.config['PORT'] = environ.get('PORT')
+
 hash_table: HashTable = HashTable()
 #endregion
 
@@ -32,4 +35,4 @@ def index() -> Response:
 
 
 if __name__ == '__main__':
-	app.run(debug=getenv('DEBUG'), port=getenv('PORT'))
+	app.run(host='127.0.0.1', port=app.config['PORT'])
