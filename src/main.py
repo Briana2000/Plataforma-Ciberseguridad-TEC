@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #region imports
-from flask import Flask, Response, jsonify, request, Blueprint
+from flask import Flask, Response, jsonify, request
 from dotenv import load_dotenv
 from os import getenv
 from blueprints.exercices import exercices
@@ -20,6 +20,13 @@ hash_table: HashTable = HashTable()
 
 
 
+#region init and populate hash table
+hash_table.populate_hashtable(getenv('EXERCISES_DIR'))
+#endregion
+
+
+
+
 #region subscribe blueprints
 app.register_blueprint(exercices, url_prefix='/exercices')
 #endregion
@@ -33,8 +40,5 @@ def index() -> Response:
 #endregion
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1', port=app.config['PORT'])
-
-#region init and populate hash table
-hash_table.populate_hashtable(getenv('EXERCISES_DIR'))
-#endregion
+	#app.run(host='127.0.0.1', port=app.config['PORT'])
+	print(hash_table)

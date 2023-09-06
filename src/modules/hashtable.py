@@ -57,6 +57,9 @@ class HashTable:
                 self.insert_zip(zip_file, zip_data)
 
 #Function to print the hash table | For debugging purposes
-    def print_hashtable(self) -> None:
+    def __str__(self) -> str:
+        tmp: str = "{\n"
         for key, value in self.table.items():
-            print(f"{key} : {value}")
+            tmp += f"\t{key} : \n\t\t{value}\n\n"
+        tmp += "}"
+        return tmp
