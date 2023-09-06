@@ -5,8 +5,10 @@ from typing import Any
 #HasTable class for storing the zip files and their hashes
 class HashTable:
     def __init__(self) -> None:
-        self.table = {}
-
+        self.table:dict[str: bytes] = {}
+    @property
+    def Table(self) -> dict[str: bytes]:
+        return self.table
 #Function to generate a hash for a given key
     def generate_hash(self, key) -> str:
         return hashlib.sha3_512(key.encode()).hexdigest()

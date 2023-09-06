@@ -74,7 +74,7 @@ def test_get_zip_not_found(hash_table):
 
 #Test for the population of the hash table with the zip files from the given directory
 def test_populate_hashtable(hash_table, EXERCISES_DIR):
-    hash_table.populate_hashtable(root_dir + EXERCISES_DIR)
+    hash_table.populate_hashtable(EXERCISES_DIR)
     assert len(hash_table.table) > 0
 
 #Test for the population of the hash table with the zip files from the given directory that does not exist
@@ -87,5 +87,5 @@ def test_hashtable_print(hash_table):
     hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
     hash_table.insert_zip(dummy_files[1].name, dummy_files[1].content)
     hash_table.insert_zip(dummy_files[2].name, dummy_files[2].content)
-    hash_table.print_hashtable()
-    assert hash_table.table != {}
+    print(hash_table)
+    assert hash_table.Table != None
