@@ -20,7 +20,7 @@ def hash_table():
 #endregion fixtures
 
 #region Dummy Data
-DummyFile = namedtuple("DummyFile", ["name", "content"])
+DummyFile = namedtuple("DummyFile", ["name", "path"])
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(script_dir)
@@ -29,9 +29,9 @@ with open(dummy_path, "rb") as dummy_file:
     dummy_content = dummy_file.read()
 
 dummy_files = [
-    DummyFile("test.zip", "test.zip"),
-    DummyFile("test2.zip", "test2.zip"),
-    DummyFile("DummyForDumies", dummy_content)
+    DummyFile("test.zip", "./test.zip"),
+    DummyFile("test2.zip", "./test2.zip"),
+    DummyFile("DummyForDumies", dummy_path)
 ]
 #endregion Dummy Data
 
@@ -44,48 +44,53 @@ def test_generate_hash(hash_table):
 def test_create_hashtable(hash_table):
     assert hash_table != None
 
-#Test for the insertion of a zip file into the hash table
+#Test for the insertion of a zip path into the hash table
 def test_insert_zip(hash_table):
     for dummy_file in dummy_files:
-        hash_table.insert_zip(dummy_file.name, dummy_file.content)
-        assert hash_table.table[hash_table.generate_hash(dummy_file.name)] == dummy_file.content
+        hash_table.insert_zip(dummy_file.name, dummy_file.path)
+        assert hash_table.table[hash_table.generate_hash(dummy_file.name)] == dummy_file.path
 
-#Test for the deletion of a zip file from the hash table
+#Test for the deletion of a zip path from the hash table
 def test_delete_zip(hash_table):
-    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
+    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].path)
     hash_table.delete_zip(dummy_files[0].name)
     assert hash_table.table == {}
 
-#Test for the deletion of a zip file from the hash table that does not exist
+#Test for the deletion of a zip path from the hash table that does not exist
 def test_delete_zip_not_found(hash_table):
-    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
-    hash_table.delete_zip(dummy_files[1].name)
-    assert hash_table.table != {}
+    with pytest.raises(Exception) as excinfo:
+        hash_table.insert_zip(dummy_files[0].name, dummy_files[0].path)
+        hash_table.delete_zip(dummy_files[1].name)
+    assert str(excinfo.value) == f"File '{dummy_files[1].name}' not found in the hash table."
 
-#Test for the search of a zip file from the hash table
-def test_get_zip(hash_table):
-    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
-    assert hash_table.get_zip(dummy_files[0].name) == dummy_files[0].content
+#Test for the search of a zip path from the hash table
+def test_get_path(hash_table):
+    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].path)
+    assert hash_table.get_path(dummy_files[0].name) == dummy_files[0].path
 
-#Test for the search of a zip file from the hash table that does not exist
-def test_get_zip_not_found(hash_table):
-    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
-    assert hash_table.get_zip(dummy_files[1].name) == None
+#Test for the search of a zip path from the hash table that does not exist
+def test_get_path_not_found(hash_table):
+    with pytest.raises(Exception) as excinfo:
+        hash_table.insert_zip(dummy_files[0].name, dummy_files[0].path)
+        hash_table.get_path(dummy_files[1].name)
+    assert str(excinfo.value) == f"File '{dummy_files[1].name}' not found in the hash table."
 
-#Test for the population of the hash table with the zip files from the given directory
+#Test for the population of the hash table with the zip paths from the given directory
 def test_populate_hashtable(hash_table, EXERCISES_DIR):
     hash_table.populate_hashtable(EXERCISES_DIR)
     assert len(hash_table.table) > 0
 
-#Test for the population of the hash table with the zip files from the given directory that does not exist
+#Test for the population of the hash table with the zip paths from the given directory that does not exist
 def test_populate_hashtable_not_found(hash_table, dir:str = "this dir does not exist"):
-    hash_table.populate_hashtable(dir)
-    assert hash_table.table == {}
+    with pytest.raises(Exception) as excinfo:
+        hash_table.populate_hashtable(dir)
+        assert hash_table.table == {}
+    assert str(excinfo.value) == f"Directory '{dir}' not found."
 
 #Test for the print of the hash table
 def test_hashtable_print(hash_table):
-    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].content)
-    hash_table.insert_zip(dummy_files[1].name, dummy_files[1].content)
-    hash_table.insert_zip(dummy_files[2].name, dummy_files[2].content)
+    hash_table.insert_zip(dummy_files[0].name, dummy_files[0].path)
+    hash_table.insert_zip(dummy_files[1].name, dummy_files[1].path)
+    hash_table.insert_zip(dummy_files[2].name, dummy_files[2].path)
     print(hash_table)
     assert hash_table.Table != None

@@ -40,5 +40,5 @@ def index() -> Response:
 #endregion
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1', port=app.config['PORT'])
-	#print(hash_table)
+	#app.run(host='127.0.0.1', port=app.config['PORT'])
+	print(hash_table)
