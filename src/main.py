@@ -7,6 +7,11 @@ from dotenv import load_dotenv
 from os import getenv
 from blueprints.challenges import exercices
 from modules.hashtable import HashTable
+from modules.modelDB import db
+#endregion
+
+#region initialize database
+db.create_all()
 #endregion
 
 #region app initialization
