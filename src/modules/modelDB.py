@@ -3,13 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from os import getenv
 
-
-load_dotenv()
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://" + getenv("ADMIN_USER") + ":" + getenv("ADMIN_PASSWORD") + "@localhost:" + getenv("DB_PORT") + "/" + getenv("DB_NAME")
-db = SQLAlchemy(app)
-
+db = SQLAlchemy()
 
 # Create a model for the database
 class Users(db.Model):
@@ -18,6 +12,16 @@ class Users(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.student_nickname
+
+def add_learner(student_carnet, student_nickname):
+    new_learner = Users(student_carnet=student_carnet, student_nickname=student_nickname)
+    db.session.add(new_learner)
+    db.session.commit()
+
+def get_learnes():
+    learners = Users.query.all()
+    learners_list = [{"student_carnet": learner.student_carnet, "student_nickname": learner.student_nickname} for learner in learners]
+    return jsonify(learners_list)
 
 class ExerciseTypes(db.Model):
     exercise_type_id = db.Column(db.Integer, primary_key=True)
