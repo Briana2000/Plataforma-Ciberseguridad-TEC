@@ -5,7 +5,7 @@
 from flask import Flask, Response, jsonify, request
 from dotenv import load_dotenv
 from os import getenv
-from blueprints.exercices import exercices
+from blueprints.challenges import exercices
 from modules.hashtable import HashTable
 #endregion
 
@@ -28,7 +28,7 @@ hash_table.populate_hashtable(getenv('EXERCISES_DIR'))
 
 
 #region subscribe blueprints
-app.register_blueprint(exercices, url_prefix='/exercices')
+app.register_blueprint(exercices, url_prefix='/challenges')
 #endregion
 
 

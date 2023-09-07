@@ -1,7 +1,7 @@
 from flask import Blueprint, Response, jsonify, request
 
 
-exercices = Blueprint('exercices', __name__)
+exercices = Blueprint('challenges', __name__)
 
 # download a zip file
 @exercices.route('/download/<string:filename>', methods=['GET'])
