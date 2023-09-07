@@ -21,6 +21,6 @@ __pycache__/
 # Ignorar archivos de respaldo
 *.bak
 *.swp
-
+.pytest_cache/
 # ignorar archivo de la base de datos de SQLite3
 database.db
