@@ -3,21 +3,21 @@ const challenges = [
         title: "Tentacle",
         platform: "HackTheBox",
         level: "Hard",
-        machine: "Linux",
+        category: "Linux",
         flag: false
       },
       {
         title: "Validation",
         platform: "HackTheBox",
         level: "Easy",
-        machine: "Linux",
+        category: "Linux",
         flag: false,
       }, 
       {
         title: "Mischief",
         platform: "HackTheBox",
         level: "Insane",
-        machine: "Linux",
+        category: "Linux",
         flag: false,
       }]
     

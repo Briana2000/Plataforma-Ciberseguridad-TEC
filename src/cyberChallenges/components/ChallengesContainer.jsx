@@ -12,7 +12,8 @@ export const ChallengesContainer = (props) => {
                     title={challenge.title}
                     platform={challenge.platform}
                     level={challenge.level}
-                    machine={challenge.machine}
+                    category={challenge.category}
+                    details={challenge.details}
                     flag={challenge.flag}
                 />
             ))}

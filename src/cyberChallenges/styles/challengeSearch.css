@@ -1,0 +1,30 @@
+.search-container {
+    display: flex; /* Utiliza flexbox para alinear los elementos horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+.input-search {
+    flex: 1; /* Hace que el campo de entrada ocupe todo el espacio disponible */
+    padding-right: 10px; /* Agrega espacio a la derecha del campo de entrada para separarlo del botón */
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    font-size: 1.2rem;
+    margin: 0rem 0rem 1rem 4rem;
+    padding: 0.75rem 0.50rem;
+    border: none;
+    outline: none;
+    background-color: #202020;
+    color: white;
+  }
+  
+.button-search {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quita el borde del botón */
+    padding: 10px 15px; /* Ajusta el espacio interior del botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+    margin: 0rem 4rem 1rem 0rem; 
+    width: 150px;
+    height: 49px;
+  }

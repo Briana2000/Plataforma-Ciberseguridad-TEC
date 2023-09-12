@@ -1,0 +1,10 @@
+.div-filter-challenges {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 73px;
+    padding-bottom: 20px;
+}
+
+.checkbox-filter-challenges {
+    margin-left: 5px;
+  }
