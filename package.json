@@ -1,11 +1,11 @@
 {
   "name": "react-vite-project",
   "private": true,
-  "homepage": "https://Briana2000.github.io/Plataforma-Ciberseguridad-TEC",
+  "homepage": "https://briana2000.github.io/Plataforma-Ciberseguridad-TEC/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
