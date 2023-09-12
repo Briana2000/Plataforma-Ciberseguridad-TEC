@@ -1,6 +1,5 @@
 import hashlib
 import os
-from typing import Union
 
 #HasTable class for storing the zip files paths and their hashes
 class HashTable:
@@ -34,7 +33,7 @@ class HashTable:
             raise Exception(f"File '{file_name}' not found in the hash table.")
 
 #Function to search and get the zip path file from the hash table given a hash key(file_name)
-    def get_path(self, file_name: str) -> Union[str, None]:
+    def get_path(self, file_name: str) -> str | None:
         hash_key: str = self.generate_hash(file_name)
         if hash_key in self.table:
             return self.table[hash_key]
