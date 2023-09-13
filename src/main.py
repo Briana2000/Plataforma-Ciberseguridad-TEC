@@ -6,10 +6,7 @@ from flask import Flask, Response, jsonify, request
 from dotenv import load_dotenv
 from os import getenv
 from blueprints.challenges import challenges
-from blueprints.users import learners
 from modules.hashtable import HashTable
-from flask_sqlalchemy import SQLAlchemy
-from modules.modelDB import db
 #endregion
 
 load_dotenv()
@@ -18,8 +15,6 @@ load_dotenv()
 app: Flask = Flask(__name__)
 app.debug = None if getenv('DEBUG') == 'False' else True
 app.config['PORT'] = getenv('PORT')
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://" + getenv("ADMIN_USER") + ":" + getenv("ADMIN_PASSWORD") + "@localhost:" + getenv("DB_PORT") + "/" + getenv("DB_NAME")
-db.init_app(app)
 
 hash_table: HashTable = HashTable()
 #endregion
@@ -35,7 +30,6 @@ hash_table.populate_hashtable(getenv('EXERCISES_DIR'))
 
 #region subscribe blueprints
 app.register_blueprint(challenges, url_prefix='/challenges')
-app.register_blueprint(learners, url_prefix='/learners')
 #endregion
 
 
