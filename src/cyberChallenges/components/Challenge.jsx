@@ -2,20 +2,56 @@ import '../../cyberChallenges/styles/challenge.css'
 import axios from 'axios';
 import React, { useState } from 'react';
 
-export const Challenge = ({ ID, Name, Platform, Level, Category, Description}) => {
-
+export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
+  
   const [showDescription, setShowDescription] = useState(false);
+  const [Description, setDescription] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  // Por ahora lo voy a dejar así sin hacer la llamada al API porque no tengo el archivo.
-  // El API es /challenges/download
   const handleDownload = () => {
-    console.log('Descargando archivo del reto');
+    // Obtiene el id del reto
+    const id = ID;
+    // Se realiza la petición al API
+    axios.get(`http://127.0.0.1:5000/challenges/download/${id}`).then((response) => {
+      // Si la respuesta es exitosa
+      if (response.status === 200) {
+        console.log("Descargando el archivo del reto con id: "+id+" "+response.data.message);
+      } else {
+        // Mostrar un error
+        console.log("Error al descargar el archivo: "+response.statusText);
+      }
+    });
   };
 
   const handleToggleDescription = () => {
+    
+    // Obtiene el id del reto
+    const id = ID;
+
+    console.log("Id del reto a ver info: "+id);
+
     setShowDescription(!showDescription);
+  
+    // Se realiza la petición al API
+    axios.get(`http://127.0.0.1:5000/challenges/info/${id}`).then((response) => {
+      // Si la respuesta es exitosa
+      if (response.status === 200) {
+        // Obtener la descripción del reto
+        const description = response.data.Description;
+  
+        // Actualizar el estado del componente
+        setDescription(description);
+      } else {
+        // Mostrar un error
+        console.log("Error al mostrar la descripción del reto: "+response.statusText);
+      }
+    });
   };
+
+  // Esta función es por mientras después hay que quitarla
+  const handleCheckboxChange = () => {
+    setCompleted(!completed);
+  }
 
   /*
   const handleCheckboxChange = async () => {
@@ -66,7 +102,7 @@ export const Challenge = ({ ID, Name, Platform, Level, Category, Description}) =
             <input className='checkbox-completed'
               type="checkbox"
               checked={completed}
-              /* onChange={handleCheckboxChange} */
+              onChange={handleCheckboxChange}
             />
           </label>
         </div>

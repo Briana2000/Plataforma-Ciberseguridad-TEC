@@ -10,7 +10,7 @@ export const ChallengesPage = () => {
 
   useEffect(() => {
 
-    const challenges = [
+    /*const challenges = [
       {
         ID: 0,
         Name: "Hunting",
@@ -77,15 +77,17 @@ export const ChallengesPage = () => {
       }
     ]
     
-    setChallenges(challenges);
-    /* Aquí voy a hacer la solicitud al API para mostrar los desafíos existentes
-    axios.get('/api/challenges')
+    setChallenges(challenges);*/
+
+    // Aquí voy a hacer la solicitud al API para mostrar los desafíos existentes
+    axios.get('http://127.0.0.1:5000/challenges/')
       .then((response) => {
         setChallenges(response.data);
       })
       .catch((error) => {
         console.error('Error al cargar los desafíos:', error);
-      });*/
+      });
+
   }, []);
 
   return (
