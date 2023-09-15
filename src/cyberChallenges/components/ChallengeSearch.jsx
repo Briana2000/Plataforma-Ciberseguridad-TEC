@@ -38,7 +38,7 @@ export const ChallengeSearch = ({ challenges }) => {
         <input className="input-search"
           type="text"
           id="input-search"
-          placeholder="Filter for title, platform, category & level"
+          placeholder="Filter for name, platform, category & level"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

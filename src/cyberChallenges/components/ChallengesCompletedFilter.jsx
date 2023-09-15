@@ -17,7 +17,6 @@ export const ChallengesCompletedFilter = ({ challenges }) => {
                 <input className='checkbox-filter-challenges' 
                 type="checkbox"
                 onClick={handleToggleCompleted}
-                checked={completed}
                 />
             </label>
             {/* Falta método API para filtrar los ejercicios como completados */}     

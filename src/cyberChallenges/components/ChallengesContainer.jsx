@@ -6,15 +6,14 @@ export const ChallengesContainer = (props) => {
     const listOfChallenges = props.list;
     return (
         <main className="chall-container">
-            {listOfChallenges.map((challenge, index) => (
+            {listOfChallenges.map((challenge) => (
                 <Challenge
-                    key={index}
-                    title={challenge.title}
-                    platform={challenge.platform}
-                    level={challenge.level}
-                    category={challenge.category}
-                    details={challenge.details}
-                    flag={challenge.flag}
+                    ID={challenge.ID}
+                    Name={challenge.Name}
+                    Platform={challenge.Platform}
+                    Level={challenge.Level}
+                    Category={challenge.Category}
+                    Description={challenge.Description}
                 />
             ))}
         </main>
