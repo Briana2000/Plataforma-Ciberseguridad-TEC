@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import './challengesPage.css'
 import { ChallengeSearch } from '../../cyberChallenges/components/ChallengeSearch';
 
@@ -80,7 +80,7 @@ export const ChallengesPage = () => {
     setChallenges(challenges);*/
 
     // Aquí voy a hacer la solicitud al API para mostrar los desafíos existentes
-    axios.get('http://127.0.0.1:5000/challenges/')
+    axios.get('/challenges/')
       .then((response) => {
         setChallenges(response.data);
       })

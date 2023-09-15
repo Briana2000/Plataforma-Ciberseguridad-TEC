@@ -1,5 +1,5 @@
 import '../../cyberChallenges/styles/challenge.css'
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import React, { useState } from 'react';
 
 export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
@@ -12,7 +12,7 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
     // Obtiene el id del reto
     const id = ID;
     // Se realiza la petición al API
-    axios.get(`http://127.0.0.1:5000/challenges/download/${id}`).then((response) => {
+    axios.get(`/challenges/download/${id}`).then((response) => {
       // Si la respuesta es exitosa
       if (response.status === 200) {
         console.log("Descargando el archivo del reto con id: "+id+" "+response.data.message);
@@ -33,7 +33,7 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
     setShowDescription(!showDescription);
   
     // Se realiza la petición al API
-    axios.get(`http://127.0.0.1:5000/challenges/info/${id}`).then((response) => {
+    axios.get(`/challenges/info/${id}`).then((response) => {
       // Si la respuesta es exitosa
       if (response.status === 200) {
         // Obtener la descripción del reto
