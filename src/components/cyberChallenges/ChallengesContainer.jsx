@@ -1,4 +1,4 @@
-import '../../cyberChallenges/styles/challengesContainer.css'
+import './styles/challengesContainer.css';
 import { Challenge } from './Challenge';
 
 // Aquí el main debe contener todos los retos

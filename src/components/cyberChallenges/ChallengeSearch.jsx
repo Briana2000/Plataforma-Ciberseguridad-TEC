@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../../cyberChallenges/styles/challengeSearch.css'
+import './styles/challengeSearch.css';
 import { ChallengesContainer } from './ChallengesContainer';
-import { ChallengesCompletedFilter } from '../../cyberChallenges/components/ChallengesCompletedFilter';
+import { ChallengesCompletedFilter } from './ChallengesCompletedFilter';
 
 
 export const ChallengeSearch = ({ challenges }) => {

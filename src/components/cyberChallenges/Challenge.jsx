@@ -1,4 +1,4 @@
-import '../../cyberChallenges/styles/challenge.css'
+import './styles/challenge.css'
 import axios from '../../axiosConfig';
 import React, { useState } from 'react';
 

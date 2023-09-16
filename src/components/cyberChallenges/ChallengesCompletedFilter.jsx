@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../cyberChallenges/styles/challengesCompletedFilter.css'
+import './styles/challengesCompletedFilter.css'
 
 export const ChallengesCompletedFilter = ({ challenges }) => {
 

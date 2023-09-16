@@ -1,0 +1,14 @@
+.custom-navbar {
+    background-color: #1b1b1b; 
+    color: white;
+}
+
+/* Cambia el color del texto de los elementos de navegación cuando están activos o en foco */
+.custom-navbar .navbar-nav .nav-item.active .nav-link,
+.custom-navbar .navbar-nav .nav-item:focus .nav-link {
+  color: white;
+}
+
+.custom-margin-right {
+    margin-left: 20px;
+}

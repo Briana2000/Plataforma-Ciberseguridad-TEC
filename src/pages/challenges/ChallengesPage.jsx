@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 import './challengesPage.css'
-import { ChallengeSearch } from '../../cyberChallenges/components/ChallengeSearch';
+import { ChallengeSearch } from '../../components/cyberChallenges/ChallengeSearch';
 
 
 export const ChallengesPage = () => {
