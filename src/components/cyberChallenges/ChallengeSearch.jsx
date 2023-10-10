@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import './styles/challengeSearch.css';
-import { ChallengesContainer } from './ChallengesContainer';
-import { ChallengesCompletedFilter } from './ChallengesCompletedFilter';
+import ChallengesContainer from './ChallengesContainer';
+import ChallengesCompletedFilter from './ChallengesCompletedFilter';
+import AddChallengeForm from './AddChallengeForm';
 
 
-export const ChallengeSearch = ({ challenges }) => {
+const ChallengeSearch = ({ challenges, page }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const showFilterOption = page === "challenges";
+  const showNewChallengeOption = page === "admin";
+  const [showNewChallengeButton, setNewChallengeButton] = useState(true);
+  const [isChallengeFormVisible, setIsChallengeFormVisible] = useState(false);
 
   const handleToggleCompleted = () => {
     setCompleted(!completed);
@@ -32,6 +37,15 @@ export const ChallengeSearch = ({ challenges }) => {
       });*/
   };
 
+  const handleNewChallengeClick = () => {
+    setIsChallengeFormVisible(true);
+    setNewChallengeButton(false);
+  };
+
+  const handleSubmmitChallengeClick = () => {
+    setIsChallengeFormVisible(false);
+  };
+
   return (
     <>
       <div className="search-container">
@@ -44,11 +58,17 @@ export const ChallengeSearch = ({ challenges }) => {
         />
         <button className="button-search" onClick={handleSearch}>Search</button>
       </div>
-      
-      <ChallengesCompletedFilter challenges={challenges} />
-      
+      {showFilterOption && (
+        <ChallengesCompletedFilter challenges={challenges} />
+      )}
+      {showNewChallengeOption && showNewChallengeButton && (
+        <button className='button-new-challenge' onClick={handleNewChallengeClick}> New Challenge </button>
+      )}
+      {isChallengeFormVisible && <AddChallengeForm flagShowForm={setIsChallengeFormVisible} flagButtonNewChallenge={setNewChallengeButton} />}
       {/* Muestra los resultados de la búsqueda o todos los desafíos */}
-      <ChallengesContainer list={searchTerm ? searchResults : challenges} />
+      <ChallengesContainer activePage={page} list={searchTerm ? searchResults : challenges} />
     </>
   );
 }
+
+export default ChallengeSearch;

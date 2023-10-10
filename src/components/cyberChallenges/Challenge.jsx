@@ -1,21 +1,30 @@
 import './styles/challenge.css'
 import axios from '../../axiosConfig';
 import React, { useState } from 'react';
+import EditChallengeForm from './EditChallengeForm';
 
-export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
-  
+export const Challenge = ({ ID, Name, Platform, Level, Category, Description, Page}) => {
+
   const [showDescription, setShowDescription] = useState(false);
-  const [Description, setDescription] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [showEditPanel, setShowEditPanel] = useState(false);
+  const showEditAndDeleteOptions = Page === "admin";
+  const showOptionCompleted = Page === "challenges";
+
+  const [challengeData, setChallengeData] = useState({
+    name: Name,
+    platform: Platform,
+    category: Category,
+    level: Level,
+    description: Description,
+  });
 
   const handleDownload = () => {
-    // Obtiene el id del reto
-    const id = ID;
     // Se realiza la petición al API
-    axios.get(`/challenges/download/${id}`).then((response) => {
+    axios.get(`/challenges/download/${ID}`).then((response) => {
       // Si la respuesta es exitosa
       if (response.status === 200) {
-        console.log("Descargando el archivo del reto con id: "+id+" "+response.data.message);
+        console.log("Descargando el archivo del reto con id: "+ID+" "+response.data.message);
       } else {
         // Mostrar un error
         console.log("Error al descargar el archivo: "+response.statusText);
@@ -25,33 +34,19 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
 
   const handleToggleDescription = () => {
     
-    // Obtiene el id del reto
-    const id = ID;
-
-    console.log("Id del reto a ver info: "+id);
-
     setShowDescription(!showDescription);
-  
-    // Se realiza la petición al API
-    axios.get(`/challenges/info/${id}`).then((response) => {
-      // Si la respuesta es exitosa
-      if (response.status === 200) {
-        // Obtener la descripción del reto
-        const description = response.data.Description;
-  
-        // Actualizar el estado del componente
-        setDescription(description);
-      } else {
-        // Mostrar un error
-        console.log("Error al mostrar la descripción del reto: "+response.statusText);
-      }
-    });
+    Description;
+    
+  };
+
+  const handleDeleteChallenge = () => {
+    console.log("Opción de eliminar")
   };
 
   // Esta función es por mientras después hay que quitarla
   const handleCheckboxChange = () => {
     setCompleted(!completed);
-  }
+  };
 
   /*
   const handleCheckboxChange = async () => {
@@ -71,9 +66,9 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
   };*/
 
   return (
-    <>
+  <>
     <header>
-      <div className="chall-grid-div">
+      <div className={Page === "challenges" ? "chall-grid-div-challenges" : "chall-grid-div-admin"}>
         <div className="chall-name">
           <p> {Name} </p>
         </div>
@@ -81,7 +76,7 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
           <img
             width="25"
             height="20"
-            src={showDescription ? "./arrowUp.png" : "./arrowDown.png"}
+            src={showDescription ? "/src/assets/arrowUp.png" : "/src/assets/arrowDown.png"}
             alt={showDescription ? "up" : "down"}
             onClick={handleToggleDescription}
             style={{ cursor: "pointer" }}
@@ -96,17 +91,45 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
         <div >
           <p> {Level} </p>
         </div>
+        {showOptionCompleted && (
+          <div >
+            <label >
+              Completed:
+              <input className='checkbox-completed'
+                type="checkbox"
+                checked={completed}
+                onChange={handleCheckboxChange}
+              />
+            </label>
+          </div>
+        )}
         <div >
-          <label >
-            Completed:
-            <input className='checkbox-completed'
-              type="checkbox"
-              checked={completed}
-              onChange={handleCheckboxChange}
-            />
-          </label>
+          <a href="" onClick={handleDownload}> Download </a>
         </div>
-        <a href="" onClick={handleDownload}> Download </a>
+        {showEditAndDeleteOptions && (
+          <>
+          <div>
+            <img
+              width="25"
+              height="25"
+              src="/src/assets/edit.png"
+              alt="Editar"
+              onClick={() => setShowEditPanel(true)}
+              style={{ cursor: "pointer" }}
+            />
+            </div>
+            <div>
+            <img
+              width="25"
+              height="25"
+              src="/src/assets/delete.png"
+              alt="Eliminar"
+              onClick={handleDeleteChallenge}
+              style={{ cursor: "pointer" }}
+            />
+            </div>
+            </>   
+        )}
       </div>
       <div style={{ borderBottom: '1px solid #c7c8ca', marginBottom: '20px' }}></div>
       {showDescription && (
@@ -114,6 +137,11 @@ export const Challenge = ({ ID, Name, Platform, Level, Category}) => {
           <p> Challenge Description: </p>
           <p> {Description} </p>
         </div>
+      )}
+      {showEditPanel && (
+        <>
+        <EditChallengeForm challengeData={challengeData} setChallengeData={setChallengeData} flagShowEditPanel={setShowEditPanel} />
+        </>
       )}
     </header>
   </>

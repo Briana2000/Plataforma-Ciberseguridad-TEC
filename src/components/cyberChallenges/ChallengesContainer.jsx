@@ -1,8 +1,8 @@
 import './styles/challengesContainer.css';
 import { Challenge } from './Challenge';
 
-// Aquí el main debe contener todos los retos
-export const ChallengesContainer = (props) => {
+// Aquí se setean los retos.
+const ChallengesContainer = (props) => {
     const listOfChallenges = props.list;
     return (
         <main className="chall-container">
@@ -14,8 +14,12 @@ export const ChallengesContainer = (props) => {
                     Platform={challenge.Platform}
                     Level={challenge.Level}
                     Category={challenge.Category}
+                    Description={challenge.Description}
+                    Page={props.activePage}
                 />
             ))}
         </main>
-    )
-}
+    );
+};
+
+export default ChallengesContainer;

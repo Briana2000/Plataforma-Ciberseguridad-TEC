@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles/challengesCompletedFilter.css'
 
-export const ChallengesCompletedFilter = ({ challenges }) => {
+const ChallengesCompletedFilter = ({ challenges }) => {
 
     const [completed, setCompleted] = useState(false);
 
@@ -22,5 +22,7 @@ export const ChallengesCompletedFilter = ({ challenges }) => {
             {/* Falta método API para filtrar los ejercicios como completados */}     
         </div>
         </>
-    )
-}
+    );
+};
+
+export default ChallengesCompletedFilter;

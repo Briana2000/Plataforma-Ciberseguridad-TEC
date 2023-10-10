@@ -27,20 +27,72 @@ def info(id: int) -> Response:
 #Agregué datos de ejemplo
 @challenges.route('/', methods=['GET'])
 def list() -> Response:
-	return jsonify([{
-		'ID': 0,
-        'Name': 'Pseudo',
-        'Platform': 'HackTheBox',
-        'Level': 'Medium',
-        'Category': 'Reversing',
-      },
-	  {
-        'ID': 1,
-        'Name': 'RFlag',
-        'Platform': 'HackTheBox',
-        'Level': 'Easy',
-        'Category': 'Hardware',
-      }])
+	return jsonify([
+    {
+        "ID": 0,
+        "Name": "Hunting",
+        "Platform": "HackTheBox",
+        "Level": "Easy",
+        "Category": "Pwn",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 1,
+        "Name": "RFlag",
+        "Platform": "HackTheBox",
+        "Level": "Easy",
+        "Category": "Hardware",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 2,
+        "Name": "Unsighted",
+        "Platform": "HackTheBox",
+        "Level": "Hard",
+        "Category": "Pwn",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 3,
+        "Name": "Poly",
+        "Platform": "HackTheBox",
+        "Level": "Insane",
+        "Category": "Reversing",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 4,
+        "Name": "LostKey",
+        "Platform": "HackTheBox",
+        "Level": "Medium",
+        "Category": "Crypto",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 5,
+        "Name": "The Needle",
+        "Platform": "HackTheBox",
+        "Level": "Very Easy",
+        "Category": "Hardware",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 6,
+        "Name": "Broken Decryptor",
+        "Platform": "HackTheBox",
+        "Level": "Medium",
+        "Category": "Crypto",
+        "Description": "Do you have enough permissions to get the flag?"
+    },
+    {
+        "ID": 7,
+        "Name": "Pseudo",
+        "Platform": "HackTheBox",
+        "Level": "Medium",
+        "Category": "Reversing",
+        "Description": "Do you have enough permissions to get the flag?"
+    }
+])
 
 @challenges.route('/submit', methods=['POST'])
 def submit() -> Response:

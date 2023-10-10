@@ -2,13 +2,19 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import './navigationBar.css';
 
-const NavigationBar = () => {
+const NavigationBar = ({activeItem}) => {
   
-  const [activeItem, setActiveItem] = useState('challenges'); // Inicialmente, Challenges está activo
+  // Para resaltar la página (challenges o submit flag) cuando el usuario se ubica en la página
+  const [setActiveItem] = useState(activeItem); 
 
   const handleItemClick = (item) => {
     setActiveItem(item);
   };
+
+  /*<a className="navbar-brand custom-margin-right" href="#">
+        <img src="/src/assets/logo_comunidad.png" width="80" height="70" alt="" object-fit="cover" />
+      </a>*/
+    //
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
