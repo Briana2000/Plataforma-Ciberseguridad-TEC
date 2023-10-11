@@ -12,29 +12,47 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
         category: "",
         level: "",
         description: "",
+        file: null,
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNewChallengeData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
+        const { name, value, type } = e.target;
+        if (type === "file") {
+          // Para manejar la carga del archivo .zip
+          setNewChallengeData((prevData) => ({
+            ...prevData,
+            [name]: e.target.files[0], // Guarda el archivo
+          }));
+        } else {
+          setNewChallengeData((prevData) => ({
+            ...prevData,
+            [name]: value,
+          }));
+        }
         setFormChanged(true);
-    };
+      };
 
     // Aquí hay que enviar el nuevo reto al API
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(formChanged){
-            const newChallengeJSON = JSON.stringify(newChallengeData);
-            console.log(newChallengeJSON);
+        if (formChanged) {
+          const formData = new FormData();
+          formData.append("name", newChallengeData.name);
+          formData.append("platform", newChallengeData.platform);
+          formData.append("category", newChallengeData.category);
+          formData.append("level", newChallengeData.level);
+          formData.append("description", newChallengeData.description);
+          formData.append("file", newChallengeData.file); // Adjunta el archivo .zip
+    
+          // Aquí puedes realizar la solicitud al API con formData
+          // Ejemplo: fetch('tu_url_de_API', { method: 'POST', body: formData })
+          console.log(formData.get("name"));
         }
-        // Cierra el formulario
         e.target.reset();
         flagShowForm(false);
         flagButtonNewChallenge(true);
-    };
+      };
+    
 
     const handleCloseForm = () => {
         flagShowForm(false);
@@ -42,13 +60,6 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
     }
 
     return (
-    <>
-    <img
-        src="/src/assets/close_icon.png"
-        alt="Close"
-        onClick={handleCloseForm}
-        style={{ cursor: "pointer", marginLeft: "800px"}}
-    />
     <div className="centered-form">
     <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formGroupName">
@@ -101,11 +112,18 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                     onChange={handleChange}
                 />
         </Form.Group>
+        <Form.Group className="form-group" controlId="formGroupFile">
+            <Form.Label>Attach .zip File</Form.Label>
+            <Form.Control
+              type="file"
+              name="file"
+              onChange={handleChange}
+            />
+          </Form.Group>
       
-        <button className='button-save' type="submit"> Save </button>
+          <button className='button-cancel' onClick={handleCloseForm}> Cancel </button> <button className='button-save' type="submit"> Save </button>
     </Form>
     </div>
-    </>
     );
 };    
  

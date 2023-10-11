@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../axiosConfig';
 import ChallengeSearch from "../components/cyberChallenges/ChallengeSearch";
 import Title from "../components/cyberChallenges/Title";
+import Navbar from '../components/sideBarAdmin/Navbar';
 
 
 export const AdminDashboardPage = () => {
@@ -22,6 +23,7 @@ export const AdminDashboardPage = () => {
 
   return (
     <>
+      <Navbar/>
       <Title />
       < ChallengeSearch challenges={challenges} page={'admin'} />
     </>

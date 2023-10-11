@@ -40,7 +40,7 @@ export const Challenge = ({ ID, Name, Platform, Level, Category, Description, Pa
   };
 
   const handleDeleteChallenge = () => {
-    console.log("Opción de eliminar")
+    console.log(`Se eliminará el reto con ID: ${ID}`);
   };
 
   // Esta función es por mientras después hay que quitarla

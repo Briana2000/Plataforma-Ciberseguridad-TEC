@@ -2,10 +2,24 @@
     margin-top: 10px;
 }
 
-.button-save{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.button-save {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    margin-left: 160px;
     background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quita el borde del botón */
+    border-radius: 5px;
+    padding: 10px 15px; /* Ajusta el espacio interior del botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+    width: 110px;
+    height: 50px;
+}
+
+.button-cancel {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    background-color: #d9534f; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
     border: none; /* Quita el borde del botón */
     border-radius: 5px;
@@ -17,6 +31,7 @@
 
 .centered-form {
     display: flex;
+    margin-top: 80px;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Esto centra verticalmente el formulario en la página */

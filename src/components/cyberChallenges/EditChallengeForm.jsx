@@ -12,61 +12,54 @@ const EditChallengeForm = ({challengeData, setChallengeData, flagShowEditPanel})
     category: challengeData.category,
     platform: challengeData.platform,
     description: challengeData.description,
+    file: null,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type } = e.target;
+    if (type === "file") {
+      // Para manejar la carga del archivo .zip
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: e.target.files[0], // Guarda el archivo
+      }));
+    } else {
+      setNewChallengeData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
     setFormChanged(true);
   };
 
   // FALTA CONECTAR LOS EVENTOS CHANGE DE CADA ATRIBUTO CON EL API ************************
-  
-  /*
-  // Esto va dentro del return
-   <Form.Group controlId="formGroupFile">
-        <Form.Label>File</Form.Label>
-        <Form.Control
-          type="file"
-          placeholder="Challenge file"
-          value={file}
-          onChange={handleChangeFile}
-        />
-      </Form.Group> */
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-    console.log(formChanged);
     if (formChanged) {
-      // Envía los datos actualizados al API y si la respuesta es Ok entonces cambio los datos
-      // del challenge con setChallengeData que recibe el componente.
-        const formDataJSON = JSON.stringify(formData);
-        console.log(formDataJSON); 
+      const data = new FormData();
+          data.append("name", formData.name);
+          data.append("platform", formData.platform);
+          data.append("category", formData.category);
+          data.append("level", formData.level);
+          data.append("description", formData.description);
+          data.append("file", formData.file); // Adjunta el archivo .zip
+
+          console.log(data.get("name"));
     }
+    e.target.reset(); 
     // Restablece el estado formChanged a false
     setFormChanged(false);
-
     // Cierra el formulario
     flagShowEditPanel(false);
-    e.target.reset(); 
   };
 
+  //Cierra el formulario
   const handleCloseForm = () => {
     flagShowEditPanel(false);
   }
     
 return(
-  <>
-<img
-  src="/src/assets/close_icon.png"
-  alt="Close"
-  onClick={handleCloseForm}
-  style={{ cursor: "pointer", marginLeft: "700px"}}
-/>
 <div className="centered-form">
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formGroupName">
@@ -119,13 +112,20 @@ return(
           onChange={handleChange}
         />
       </Form.Group>
+        <Form.Group className="form-group" controlId="formGroupFile">
+            <Form.Label>Attach .zip File</Form.Label>
+            <Form.Control
+              type="file"
+              name="file"
+              onChange={handleChange}
+            />
+          </Form.Group>
   
-      <button className="button-save" type="submit" >
+      <button className='button-cancel' onClick={handleCloseForm}> Cancel </button> <button className="button-save" type="submit" >
         Save
       </button> 
     </Form>
   </div>
-  </>
 );
 }; 
 
