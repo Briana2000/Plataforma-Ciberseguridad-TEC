@@ -18,7 +18,7 @@ export const SubmitFlagPage = () => {
   return (
     <>
     <NavigationBar activeItem = {'submit_flag'}/>
-    <div className="container-submitFlag">
+    <div style={{marginLeft:'80px'}}>
       <h2 className="mt-4"> Submit a flag </h2>
       <div className="row">
         <div className="col-md-6 mt-2">
