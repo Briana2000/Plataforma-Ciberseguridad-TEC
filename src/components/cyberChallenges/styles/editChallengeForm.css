@@ -32,6 +32,7 @@
 .centered-form {
     display: flex;
     margin-top: 80px;
+    margin-bottom: 70px;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Esto centra verticalmente el formulario en la página */

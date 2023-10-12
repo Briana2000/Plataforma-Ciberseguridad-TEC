@@ -12,6 +12,7 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
         category: "",
         level: "",
         description: "",
+        flag: "",
         file: null,
     });
 
@@ -42,6 +43,7 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
           formData.append("category", newChallengeData.category);
           formData.append("level", newChallengeData.level);
           formData.append("description", newChallengeData.description);
+          formData.append("flag", newChallengeData.flag);
           formData.append("file", newChallengeData.file); // Adjunta el archivo .zip
     
           // Aquí puedes realizar la solicitud al API con formData
@@ -67,7 +69,6 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                 <Form.Control
                     type="text"
                     name="name"
-                    value={newChallengeData.name}
                     onChange={handleChange}
                 />
         </Form.Group>
@@ -77,7 +78,6 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                 <Form.Control
                     type="text"
                     name="platform"
-                    value={newChallengeData.platform}
                     onChange={handleChange}
                 />
         </Form.Group>
@@ -87,7 +87,6 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                     <Form.Control
                         type="text"
                         name="category"
-                        value={newChallengeData.category}
                         onChange={handleChange}
                     />
         </Form.Group>
@@ -97,7 +96,6 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                 <Form.Control
                     type="text"
                     name="level"
-                    value={newChallengeData.level}
                     onChange={handleChange}
                 />
         </Form.Group>
@@ -108,10 +106,19 @@ const AddChallengeForm = ({flagShowForm, flagButtonNewChallenge}) => {
                     as="textarea"
                     style={{ width: '100%', minHeight: '100px', height: 'auto' }}
                     name="description"
-                    value={newChallengeData.description}
                     onChange={handleChange}
                 />
         </Form.Group>
+
+        <Form.Group className="form-group" controlId="formGroupFlag">
+          <Form.Label>Flag</Form.Label>
+            <Form.Control
+              type="text"
+              name="flag"
+              onChange={handleChange}
+            />
+      </Form.Group>
+
         <Form.Group className="form-group" controlId="formGroupFile">
             <Form.Label>Attach .zip File</Form.Label>
             <Form.Control

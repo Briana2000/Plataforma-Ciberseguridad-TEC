@@ -12,6 +12,7 @@ const EditChallengeForm = ({challengeData, setChallengeData, flagShowEditPanel})
     category: challengeData.category,
     platform: challengeData.platform,
     description: challengeData.description,
+    flag: "", 
     file: null,
   });
 
@@ -24,7 +25,7 @@ const EditChallengeForm = ({challengeData, setChallengeData, flagShowEditPanel})
         [name]: e.target.files[0], // Guarda el archivo
       }));
     } else {
-      setNewChallengeData((prevData) => ({
+      setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
@@ -43,6 +44,7 @@ const EditChallengeForm = ({challengeData, setChallengeData, flagShowEditPanel})
           data.append("category", formData.category);
           data.append("level", formData.level);
           data.append("description", formData.description);
+          data.append("flag", formData.flag);
           data.append("file", formData.file); // Adjunta el archivo .zip
 
           console.log(data.get("name"));
@@ -112,6 +114,17 @@ return(
           onChange={handleChange}
         />
       </Form.Group>
+
+      <Form.Group className="form-group" controlId="formGroupFlag">
+        <Form.Label>Flag</Form.Label>
+        <Form.Control
+          type="text"
+          name="flag"
+          value={formData.flag}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
         <Form.Group className="form-group" controlId="formGroupFile">
             <Form.Label>Attach .zip File</Form.Label>
             <Form.Control
