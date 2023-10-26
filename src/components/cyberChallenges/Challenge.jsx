@@ -88,8 +88,23 @@ export const Challenge = ({ ID, Name, Platform, Level, Category, Description, Pa
         <div >
           <p> {Category} </p>
         </div>
-        <div >
-          <p> {Level} </p>
+        <div style={{ display: 'flex' }}>
+          {Level === 'Very Easy' && (
+            <img width="20" height="21" src="/src/assets/very_easy.png" alt="very_easy_level" />
+          )}
+          {Level === 'Easy' && (
+            <img width="20" height="21" src="/src/assets/easy.png" alt="easy_level" />
+          )}
+          {Level === 'Medium' && (
+            <img width="20" height="21" src="/src/assets/medium.png" alt="medium_level" />
+          )}
+          {Level === 'Hard' && (
+            <img width="20" height="21" src="/src/assets/hard.png" alt="hard_level" />
+          )}
+          {Level === 'Insane' && (
+            <img width="20" height="21" src="/src/assets/insane.png" alt="insane_level" />
+          )}
+          <p style={{ marginLeft: '10px' }}>{Level}</p>
         </div>
         {showOptionCompleted && (
           <div >

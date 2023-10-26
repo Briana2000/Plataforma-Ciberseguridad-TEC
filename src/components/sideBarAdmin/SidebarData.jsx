@@ -12,7 +12,7 @@ export const SidebarData = [
   },
   {
     title: 'Users',
-    path: '/admin/dashboard',
+    path: '/users',
     icon: < IoMdPeople />,
     cName: 'nav-text'
   },

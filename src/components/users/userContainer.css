@@ -1,0 +1,9 @@
+@import url("./../cyberChallenges/styles/challengesContainer.css");
+
+.div-users-titles-columns{
+    display: grid; 
+    justify-content: space-between;
+    grid-template-columns: 0.3fr 0.33fr 0.33fr 0fr; /* Define las columnas */
+    color: #007bff;
+    margin-bottom: 30px;
+}

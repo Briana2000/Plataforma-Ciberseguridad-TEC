@@ -6,7 +6,7 @@ body, html {
 .chall-grid-div-challenges{
     display: grid; 
     justify-content: space-between;
-    grid-template-columns: 0.6fr 0.6fr 0.8fr 0.8fr 0.6fr 0.8fr 0fr; /* Define las columnas */
+    grid-template-columns: 0.5fr 0.4fr 0.6fr 0.6fr 0.6fr 0.6fr 0fr; /* Define las columnas */
 }
 
 .chall-grid-div-admin{

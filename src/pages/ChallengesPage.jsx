@@ -3,6 +3,7 @@ import axios from '../axiosConfig';
 import ChallengeSearch from '../components/cyberChallenges/ChallengeSearch';
 import NavigationBar from '../components/navigationBar/NavigationBar';
 import Title from '../components/cyberChallenges/Title';
+import Logo from '../components/logoImage/Logo';
 
 
 export const ChallengesPage = () => {
@@ -94,6 +95,7 @@ export const ChallengesPage = () => {
   return (
     <>
       <NavigationBar activeItem = {'challenges'}/>
+      <Logo />
       <Title />
       < ChallengeSearch challenges={challenges} page={'challenges'} /> 
     </>

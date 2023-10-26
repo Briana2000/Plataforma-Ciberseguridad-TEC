@@ -3,6 +3,7 @@ import axios from '../axiosConfig';
 import ChallengeSearch from "../components/cyberChallenges/ChallengeSearch";
 import Title from "../components/cyberChallenges/Title";
 import Navbar from '../components/sideBarAdmin/Navbar';
+import Logo from '../components/logoImage/Logo';
 
 
 export const AdminDashboardPage = () => {
@@ -24,6 +25,7 @@ export const AdminDashboardPage = () => {
   return (
     <>
       <Navbar/>
+      <Logo />
       <Title />
       < ChallengeSearch challenges={challenges} page={'admin'} />
     </>
