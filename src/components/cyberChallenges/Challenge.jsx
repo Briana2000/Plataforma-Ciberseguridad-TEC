@@ -88,23 +88,25 @@ export const Challenge = ({ ID, Name, Platform, Level, Category, Description, Pa
         <div >
           <p> {Category} </p>
         </div>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', marginTop: '3px'}}>
           {Level === 'Very Easy' && (
-            <img width="20" height="21" src="/src/assets/very_easy.png" alt="very_easy_level" />
+            <img width="19" height="19" src="/src/assets/very_easy.png" alt="very_easy_level" />
           )}
           {Level === 'Easy' && (
-            <img width="20" height="21" src="/src/assets/easy.png" alt="easy_level" />
+            <img width="19" height="19" src="/src/assets/easy.png" alt="easy_level" />
           )}
           {Level === 'Medium' && (
-            <img width="20" height="21" src="/src/assets/medium.png" alt="medium_level" />
+            <img width="19" height="19" src="/src/assets/medium.png" alt="medium_level" />
           )}
           {Level === 'Hard' && (
-            <img width="20" height="21" src="/src/assets/hard.png" alt="hard_level" />
+            <img width="19" height="19" src="/src/assets/hard.png" alt="hard_level" />
           )}
           {Level === 'Insane' && (
-            <img width="20" height="21" src="/src/assets/insane.png" alt="insane_level" />
+            <img width="19" height="19" src="/src/assets/insane.png" alt="insane_level" />
           )}
-          <p style={{ marginLeft: '10px' }}>{Level}</p>
+        </div>
+        <div>
+          <p style={{ marginLeft: '10px', marginTop: '1px' }}>{Level}</p>
         </div>
         {showOptionCompleted && (
           <div >
